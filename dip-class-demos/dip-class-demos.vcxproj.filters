@@ -24,7 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CFuntions.h">
+    <ClInclude Include="funtions.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="dip-class-demos.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CFuntions.cpp">
+    <ClCompile Include="funtions.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

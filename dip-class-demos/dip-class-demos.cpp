@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include <opencv.hpp>
-#include "CFuntions.h"
+#include "funtions.h"
 
 using namespace cv;
 using namespace std;
