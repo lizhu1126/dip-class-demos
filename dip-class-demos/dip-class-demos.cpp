@@ -2,7 +2,9 @@
 //
 
 #include "stdafx.h"
+#include <opencv.hpp>
 
+using namespace cv;
 
 int main()
 {
