@@ -10,13 +10,16 @@ using namespace std;
 
 int main()
 {
-	int n = 20000;
+	//寻找2-n范围内的质数
+	int n = 1000;
+	//是否将找到的质数打印在状态栏
+	bool ifPrint = false;
 
 	//开始计时
 	double start = static_cast<double>(cvGetTickCount());
 	
 	//00.普通的试除法(trial division)寻找质数
-	pickPrime(n);
+	pickPrime(n, ifPrint);
 
 	//结束计时
 	double pp_time = ((double)cvGetTickCount() - start) / cvGetTickFrequency();
@@ -28,7 +31,7 @@ int main()
 	double Estart = static_cast<double>(cvGetTickCount());
 
 	//01.埃拉托斯特尼筛法(sieve of Eratosthenes)寻找质数
-	EratosSieve(n);
+	EratosSieve(n,ifPrint);
 	//结束计时
 	double E_time = ((double)cvGetTickCount() - Estart) / cvGetTickFrequency();
 	//显示时间

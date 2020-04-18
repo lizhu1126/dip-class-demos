@@ -8,7 +8,7 @@ using namespace std;
 /*************************************************
 //功能：确定2-n范围内的所有质数，并打印至状态栏
 *************************************************/
-void pickPrime(int maxVal)
+void pickPrime(int maxVal,bool ifPrint)
 {
 	
 	cout << "pick out prime by trial division algorithm "<< endl <<endl;
@@ -16,10 +16,12 @@ void pickPrime(int maxVal)
 	int sum = 0;
 	for (int i = 2; i <= maxVal; i++) {
 		if (isPrime(i)) {
-			//cout << i <<" ";
+			if (ifPrint) {
+				cout << i << " ";
+				//每20个换行
+				if (sum % 20 == 0) cout << endl;
+			}
 			sum++;
-			//每20个换行
-			//if(sum%20==0) cout << endl;
 		}
 	}
 
@@ -49,7 +51,7 @@ bool isPrime(int x)
 	return true;
 }
 
-void EratosSieve(int maxVal)
+void EratosSieve(int maxVal,bool ifPrint)
 {
 	cout << "pick out prime by Eratosthenes's algorithm " << endl << endl;
 
@@ -63,10 +65,12 @@ void EratosSieve(int maxVal)
 	for (int i = 2; i <= maxVal; ++i) {
 		if (flag[i]) {
 			//如果第i号为质数
-			//cout << i << " ";
+			if (ifPrint) {
+				cout << i << " ";
+				//每20个换行
+				if (sum % 20 == 0) cout << endl;
+			}
 			sum++;
-			//每20个换行
-			//if (sum % 20 == 0) cout << endl;
 			for (long long j = i*i; j <= maxVal; j += i) {
 			    flag[j] = false;
 			}
