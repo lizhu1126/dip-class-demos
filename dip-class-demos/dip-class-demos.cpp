@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	//寻找2-n范围内的质数
-	int n = 1000;
+	int n = 50000000;
 	//是否将找到的质数打印在状态栏
 	bool ifPrint = false;
 
@@ -29,7 +29,6 @@ int main()
 
 	//开始计时
 	double Estart = static_cast<double>(cvGetTickCount());
-
 	//01.埃拉托斯特尼筛法(sieve of Eratosthenes)寻找质数
 	EratosSieve(n,ifPrint);
 	//结束计时

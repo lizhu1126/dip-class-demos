@@ -60,7 +60,6 @@ void EratosSieve(int maxVal,bool ifPrint)
 
 	flag[0] = false;
 	flag[1] = false;
-
 	int sum = 0;
 	for (int i = 2; i <= maxVal; ++i) {
 		if (flag[i]) {
@@ -71,7 +70,7 @@ void EratosSieve(int maxVal,bool ifPrint)
 				if (sum % 20 == 0) cout << endl;
 			}
 			sum++;
-			for (long long j = i*i; j <= maxVal; j += i) {
+			for (int j = i; j <= maxVal; j += i) {
 			    flag[j] = false;
 			}
 		} 
