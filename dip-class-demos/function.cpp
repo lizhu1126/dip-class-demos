@@ -5,8 +5,10 @@ using namespace cv;
 using namespace std;
 
 
-
-//第四周 练习1  图像形态学
+/**********************************
+第四周练习1：
+图像形态学处理，分别对图像进行腐蚀、膨胀、开运算、闭运算
+************************************/
 void morphology()
 {
 	//读取图片并转化为灰度图
@@ -17,8 +19,6 @@ void morphology()
 		cout << "fail to read pic!" << endl;
 		return;
 	}
-
-
 	//定义图像容器
 	Mat thresh_Mat;
 	Mat dilate_Mat;
@@ -54,7 +54,10 @@ void morphology()
 	waitKey(0);
 }
 
-//第四周练习2：连通域标记
+/**********************************
+第四周练习2：
+连通域标记
+************************************/
 void connectedwithstats()
 {
 	//读取图片并转化为灰度图
@@ -88,13 +91,14 @@ void connectedwithstats()
 	//对识别出的连通域加最小外接边框
 	for (int i = 1;i < nComp;i++)
 	{
+		//定义Rect类
 		Rect bandbox;
 		bandbox.x = stats.at<int>(i, 0);
 		bandbox.y = stats.at<int>(i, 1);
 
 		bandbox.width = stats.at<int>(i, 2);
 		bandbox.height = stats.at<int>(i, 3);
-
+		//画出矩形
 		rectangle(thresh_Mat, bandbox, 255, 1, 8, 0);
 	}
 	
@@ -104,9 +108,11 @@ void connectedwithstats()
 
 
 
+/**********************************
+第四周练习3：
+原点计数
+************************************/
 
-
-//第四周练习3 原点计数
 void origincount()
 {
 	//读取图片并转化为灰度图
@@ -121,8 +127,6 @@ void origincount()
 	//转化为灰度图
 	Mat gryMat;
 	cvtColor(srcMat, gryMat, COLOR_BGRA2GRAY);
-
-
 
 	//反色
 	gryMat = 255 - gryMat;
@@ -140,7 +144,7 @@ void origincount()
 	//定义结构元素
 	Mat element = getStructuringElement(MORPH_RECT, Size(5, 5), Point(-1, -1));
 
-	//对图像进行腐蚀处理，消除掉线
+	//对图像进行腐蚀处理，只保留要求的点
 	erode(thresh_Mat, erode_Mat, element, Point(-1, -1), 2);
 
 
@@ -148,15 +152,15 @@ void origincount()
 	//进行连通域标记
 	int nComp = connectedComponentsWithStats(erode_Mat, labels, stats, centroids, 8, CV_32S);
 
-	//减去背景0，并输出
+	//减去背景，并输出个数
 	cout << "原点个数为：" << nComp - 1 << endl;
 
 }
 
-
-
-
-//第四周练习4 回型针计数
+/**********************************
+第四周练习4：
+回型针计数
+************************************/
 void clipcount()
 {
 	//读取图片并转化为灰度图
@@ -209,7 +213,7 @@ void clipcount()
 		}
 	}
 
-	//减去背景0，并输出
+	//减去背景连通域，输出回形针格个数
 	cout << "回型针个数为：" << nComp - 1 << endl;
 	
 }
