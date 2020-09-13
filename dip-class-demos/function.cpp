@@ -4,9 +4,13 @@
 using namespace cv;
 using namespace std;
 
-//第五周 练习1—3 中值滤波  均值滤波 高斯滤波
+/*****************************************************
+第五周 练习1-3： 中值滤波  均值滤波 高斯滤波
+*************************************************/
+
 void Filter()
 {
+	//打开摄像头
 	VideoCapture cap;
 	cap.open(0);
 	if (!cap.isOpened())
@@ -43,16 +47,22 @@ void Filter()
 	waitKey(30);
 }
 
-//第五周练习4 边缘提取
+
+
+/*****************************************************
+第五周练习4：利用sobel算子进行边缘提取
+*************************************************/
 void sobel_extracrtion()
 {
+	//打开摄像头
 	VideoCapture cap;
 	cap.open(0);
+
+	//判断是否打开摄像头
 	if (!cap.isOpened())
 	{
 		cout << "不能打开视频文件" << endl;
 		return;
-
 	}
 
 	//读取当前帧照片
@@ -62,25 +72,32 @@ void sobel_extracrtion()
 	//sobel边缘检测
 	Mat sobel_Mat;
 	Sobel(frame, sobel_Mat,-1, 1, 0, 5);
+
+	//显示结果
 	imshow("sobel_Mat", sobel_Mat);
 	waitKey(30);
 }
 
-//第五周练习5 磨皮程序
+
+
+/************************************************
+第五周练习5：简易人脸磨皮程序
+*************************************************/
+
 void Convolution_app()
 {
-	//第三周肤色提取程序
-	VideoCapture cap(0);//打开0号摄像头
+	//打开摄像头
+	VideoCapture cap(0);
 
 	//肤色h					
 	double i_minH = 0;
 	double i_maxH = 20;
 
-	//颜色饱和度s
+	//肤色颜色饱和度s
 	double i_minS = 43;
 	double i_maxS = 255;
 
-	//颜色亮度v
+	//肤色颜色亮度v
 	double i_minV = 55;
 	double i_maxV = 255;
 
@@ -93,7 +110,6 @@ void Convolution_app()
 		Mat objectMat;
 		Mat guss_Mat;
 
-
 		cap >> frame;//读取当前帧的照片
 
 		//将原图转化为hsv类型的图片
@@ -103,7 +119,7 @@ void Convolution_app()
 		frame.copyTo(maskMat);
 
 
-		//利用inRange函数对图片进行hsv筛选
+		//利用inRange函数对图片进行hsv筛选（选出人脸部分）
 		cv::inRange(hsvMat, Scalar(i_minH, i_minS, i_minV), Scalar(i_maxH, i_maxS, i_maxV), maskMat);
 
 		//原图拷入输出中
