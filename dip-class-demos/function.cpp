@@ -4,9 +4,9 @@ using namespace cv;
 using namespace std;
 
 
-/******************************************************************
-第7周练习1：改进图片旋转
-*******************************************************************/
+/***************************************************************************************************************************
+												第7周练习1：改进图片旋转
+*****************************************************************************************************************************/
 void spin_correct()
 {
 	cv::Mat srcMat = cv::imread("d:\\lena.jpg");
@@ -45,9 +45,9 @@ void spin_correct()
 }
 
 
-/******************************************************************
-第7周练习2-3：霍夫变换的使用
-*******************************************************************/
+/******************************************************************************************************************************
+												第7周练习2-3：霍夫变换的使用
+*****************************************************************************************************************************/
 
 /**********************************************标准霍夫变换****************************************/
 void houghDemo()
@@ -71,6 +71,25 @@ void houghDemo()
 	Canny(dx, dy, cannyMat, 60,180);
 
 	//进行霍夫变换
+	/************************************************
+	HoughLines（） 函数模型：
+	HoughLines( InputArray image, OutputArray lines,
+                              double rho, double theta, int threshold,
+                              double srn = 0, double stn = 0,
+                              double min_theta = 0, double max_theta = CV_PI );
+
+	参数介绍：
+	. InputArray image：InputArray类型的image，输入8bit、单通道
+	. OutputArray lines：InputArray类型的lines，经过调用HoughLines函数后储存了霍夫线变换检测到线条的输出矢量
+	. double rho：double类型的rho，以像素为单位的距离精度
+	. double theta: double类型的theta，以弧度为单位的角度精度
+	. int threshold: int类型的threshold，累加平面的阈值参数，即识别某部分为图中的一条直线时它在累加平面中必须达到的值
+	. double srn: double类型的srn，有默认值0
+	. double stn: double类型的stn，有默认值0，对于多尺度霍夫变换，srn表示第四个参数进步尺寸的单位角度theta的除数距离
+	. double min_theta: double类型的 min_theta，对于标准和多尺度Hough变换，检查线条的最小角度
+	. double max_theta: double类型的 max_theta, 对于标准和多尺度Hough变换，检查线条的最大角度
+
+	**************************************************/
 	cv::HoughLines(cannyMat, lineMat, 1, CV_PI / 180, 55);
 
 
@@ -128,6 +147,22 @@ void houghsp_demo()
 	Canny(gryMat, cannyMat, 60, 180, 3);
 
 	//进行霍夫变换
+	/************************************************
+	HoughLines（） 函数模型：
+	HoughLinesP( InputArray image, OutputArray lines,
+                               double rho, double theta, int threshold,
+                               double minLineLength = 0, double maxLineGap = 0 );
+
+	参数介绍：
+	. InputArray image：InputArray类型的image，输入8bit、单通道
+	. OutputArray lines：InputArray类型的lines，经过调用HoughLinesP函数后后存储了检测到的线条的输出矢量，每一条线由具有四个元素的矢量(x_1,y_1, x_2, y_2）  表示，其中，(x_1, y_1)和(x_2, y_2) 是是每个检测到的线段的结束点
+	. double rho：double类型的rho，以像素为单位的距离精度
+	. double theta: double类型的theta，以弧度为单位的角度精度
+	. int threshold: int类型的threshold，累加平面的阈值参数，即识别某部分为图中的一条直线时它在累加平面中必须达到的值
+	. double minLineLength: double类型的minLineLength，有默认值0，表示最低线段的长度，比这个设定参数短的线段就不能被显现出来
+	. double maxLineGap: double类型的maxLineGap，有默认值0，允许将同一行点与点之间连接起来的最大的距离
+
+	**************************************************/
 	HoughLinesP(cannyMat, linesp_Mat, 1, CV_PI / 180, 22,10 ,10);
 	int heightsp = linesp_Mat.rows;
 	int widthsp = linesp_Mat.cols;
