@@ -202,6 +202,14 @@ int calcVisibalMag(cv::Mat srcMat, cv::Mat & dstMat)
 	// log(1 + sqrt(Re(DFT(I))^2 + Im(DFT(I))^2))
 	magMat += Scalar::all(1);
 	//取对数
+	/************************************************
+	log（） 函数模型：
+	log(InputArray src, OutputArray dst);
+
+	参数介绍：
+	. InputArray src：输入图像，可以是实数或虚数
+	. OutputArray dst：输出得到的对数值
+	**************************************************/
 	log(magMat, magMat);
 
 	//确保对称
