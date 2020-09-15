@@ -5,9 +5,9 @@ using namespace cv;
 using namespace std;
 
 
-/*********************************************************
-第6周练习1：利用canny算子进行边缘提取
-*******************************************************/
+/***************************************************************************************************************************
+								第6周练习1：利用canny算子进行边缘提取
+****************************************************************************************************************************/
 
 void canny_extracrtion()
 {
@@ -38,14 +38,56 @@ void canny_extracrtion()
 
 
 	//通过sobel算子得到x、y方向上的梯度
+	/************************************************
+	sobel（） 函数模型：
+	sobel( src,dx/dy,CV_16SC1,1,0,3);
+
+	参数介绍：
+	. src：Mat类的输入图像
+	. dx/dy：x/y方向上的梯度
+	. CV_16SC1：输出的格式
+	. 1，0表示对x或者对y方向求微分的次数
+	. 3表示sobel核的大小
+	**************************************************/
 	Sobel(frame, dx, CV_16S, 1, 0, 3);
 	Sobel(frame, dy, CV_16S, 0, 1, 3);
 
 	//进行sobel边缘提取
+	/************************************************
+	Canny（） 函数模型：
+	Canny(InputArray dx, InputArray dy,
+					     OutputArray edges,
+				         double threshold1, double threshold2,
+						 bool L2gradient = false);
+
+	参数介绍：
+	. InputArray dx/InputArray dy：输入图像x/y方向上的梯度
+	. dx/dy：x/y方向上的梯度
+	. OutputArray edges：输出边缘图像，单通道，8bit；
+	. double threshold1：表示阈值1
+	. double threshold2：表示阈值2
+	. bool L2gradient:是否采用更精确的方式计算图像梯度
+	**************************************************/
+	
 	Canny(dx, dy, canny_Mat1, 20, 60);
 	
 	//转化为灰度图，在进行边缘提取
 	cvtColor(frame, gry_Mat, COLOR_BGR2GRAY);
+
+	/************************************************
+	Canny（） 函数模型：
+	Canny( InputArray image, OutputArray edges,
+                         double threshold1, double threshold2,
+                         int apertureSize = 3, bool L2gradient = false );
+
+	参数介绍：
+	. InputArray image：输入图像，单通道8位图像
+	. OutputArray edges：输出边缘图像，单通道，8bit；
+	. double threshold1：表示阈值1
+	. double threshold2：表示阈值2
+	. int apertureSize: Sobel算子大小
+	. bool L2gradient: 是否采用更精确的方式计算图像梯度
+	**************************************************/
 	Canny(gry_Mat,canny_Mat2, 20, 60);
 
 
@@ -56,9 +98,9 @@ void canny_extracrtion()
 
 }
 
-/*********************************************************
-第6周练习2、3、4 旋转、缩放以及仿射变换 投影变换
-*******************************************************/
+/****************************************************************************************************************************
+								第6周练习2、3、4 旋转、缩放以及仿射变换 投影变换
+*****************************************************************************************************************************/
 
 void warpaffine()
 {
@@ -79,6 +121,16 @@ void warpaffine()
 	cv::Point2f center(srcMat.cols*0.5, srcMat.rows*0.5);
 
 	//获得变换矩阵
+	/************************************************
+	getRotationMatrix2D（） 函数模型：
+	getRotationMatrix2D( Point2f center, double angle, double scale );
+
+	参数介绍：
+	. Point2f center：Point2f类型的center，表示旋转的中心点
+	. double angle：表示旋转的角度
+	. double scale：图像缩放因子
+
+	**************************************************/
 	const cv::Mat affine_matrix_zoom = cv::getRotationMatrix2D(center, angle, scale);
 
 
@@ -86,6 +138,24 @@ void warpaffine()
 	cv::Mat dstMat;
 
 	//利用仿射变换函数
+	/************************************************
+	warpAffine（） 函数模型：
+	warpAffine( InputArray src, OutputArray dst,
+                              InputArray M, Size dsize,
+                              int flags = INTER_LINEAR,
+                              int borderMode = BORDER_CONSTANT,
+                              const Scalar& borderValue = Scalar());
+
+	参数介绍：
+	. InputArray src：输入图像，Mat类对象即可
+	. OutputArray dst：输出图像，需要和原图片有一样的尺寸和类型
+	. InputArray M：2*3的变换矩阵
+	. Size dsize：Size类型的dsize表示输出图像的尺寸
+	. int flags：int类型的flag，插值方法的标识符
+	. int borderMode:边界像素模式
+	. const Scalar& borderValue:恒定边界下取的值
+
+	**************************************************/
 	cv::warpAffine(srcMat, dstMat, affine_matrix_zoom, srcMat.size());
 
 	
@@ -110,6 +180,16 @@ void warpaffine()
 	};
 
 	//计算仿射变换后的矩阵
+	//获得变换矩阵
+	/************************************************
+	getAffineTransform（） 函数模型：
+	getAffineTransform( const Point2f src[], const Point2f dst[] );
+
+	参数介绍：
+	. const Point2f src[]：原始图像的点
+	. const Point2f dst[]：目标图像的点
+
+	**************************************************/
 	const cv::Mat affine_matrix = cv::getAffineTransform(src_pt, warp_pt);
 
 	cv::warpAffine(srcMat, affine_Mat, affine_matrix, srcMat.size());
@@ -140,6 +220,25 @@ void warpaffine()
 	cv::Mat perspective_matrix = cv::getPerspectiveTransform(pts1, pts2);
 
 	//投影变换
+	/************************************************
+	warpPerspective（） 函数模型：
+	warpPerspective( InputArray src, OutputArray dst,
+                                   InputArray M, Size dsize,
+                                   int flags = INTER_LINEAR,
+                                   int borderMode = BORDER_CONSTANT,
+                                   const Scalar& borderValue = Scalar());
+
+
+	参数介绍：
+	. InputArray src：输入图像，Mat类对象即可
+	. OutputArray dst：输出图像，需要和原图片有一样的尺寸和类型
+	. InputArray M：透视的变换矩阵
+	. Size dsize：Size类型的dsize表示输出图像的尺寸
+	. int flags：int类型的flag，插值方法的标识符
+	. int borderMode:边界像素模式
+	. const Scalar& borderValue:恒定边界下取的值
+
+	**************************************************/
 	cv::warpPerspective(srcMat, perspective_Mat, perspective_matrix, srcMat.size());
 
 
@@ -153,9 +252,9 @@ void warpaffine()
 }
 
 
-/*********************************************************
-第6周练习5：图像矫正
-*******************************************************/
+/***************************************************************************************************************************
+												第6周练习5：图像矫正
+*****************************************************************************************************************************/
 void imgcorrect()
 {
 	//读取图片
