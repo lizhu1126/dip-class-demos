@@ -148,7 +148,7 @@ void houghsp_demo()
 
 	//进行霍夫变换
 	/************************************************
-	HoughLines（） 函数模型：
+	HoughLinesP（） 函数模型：
 	HoughLinesP( InputArray image, OutputArray lines,
                                double rho, double theta, int threshold,
                                double minLineLength = 0, double maxLineGap = 0 );
