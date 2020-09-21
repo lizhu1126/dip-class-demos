@@ -44,7 +44,7 @@ void skinRecognition()
 			//将原图转化为hsv类型的图片
 
 			/************************************************
-			cvTColor 函数模型：
+			cvTColor（） 函数模型：
 			cvtColor( InputArray src, OutputArray dst, int code, int dstCn = 0 );
 
 			参数介绍：
@@ -61,7 +61,7 @@ void skinRecognition()
 			//利用inRange函数对图片进行hsv筛选
 
 			/************************************************
-			inRange 函数模型：
+			inRange（） 函数模型：
 			inRange(InputArray src, InputArray lowerb, InputArray upperb, OutputArray dst)；
 
 			参数介绍：
@@ -105,7 +105,7 @@ void binarization()
 	cv::Mat adap_Mat;
 
 	/************************************************
-	threshold 函数模型：
+	threshold（） 函数模型：
 	threshold(InputArray src, OutputArray dst, double thresh, double maxval, int type)；
 
 	参数介绍：
@@ -132,7 +132,7 @@ void binarization()
 	threshold(srcMat, otsu_Mat, 100, 255, CV_THRESH_OTSU);
 
 	/************************************************
-	adaptiveThreshold 函数模型：
+	adaptiveThreshold（） 函数模型：
 	adaptiveThreshold( InputArray src, OutputArray dst,double maxValue, int adaptiveMethod,int thresholdType, int blockSize, double C );
 
 	参数介绍：
