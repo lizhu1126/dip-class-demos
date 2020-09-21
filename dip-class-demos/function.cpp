@@ -228,7 +228,6 @@ void warpaffine()
                                    int borderMode = BORDER_CONSTANT,
                                    const Scalar& borderValue = Scalar());
 
-
 	参数介绍：
 	. InputArray src：输入图像，Mat类对象即可
 	. OutputArray dst：输出图像，需要和原图片有一样的尺寸和类型
