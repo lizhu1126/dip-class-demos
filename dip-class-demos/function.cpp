@@ -186,7 +186,6 @@ void connectedwithstats()
                           const Scalar& color, int thickness = 1,
                           int lineType = LINE_8, int shift = 0);
 
-
 		参数介绍：
 		. ICV_IN_OUT Mat& img: CV_IN_OUT Mat& img
 		. Rect rec: Rect类成员（包含矩形的左上角坐标以及长宽）
