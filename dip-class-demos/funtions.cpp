@@ -7,6 +7,7 @@ int drawLines()
 {
 	cv::Mat displayMat = cv::Mat::zeros(500, 500, CV_8UC3);
 
+
 	//0.绘制的Mat图像
 	//1.线段起点
 	//2.线段终点
