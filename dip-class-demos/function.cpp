@@ -197,6 +197,7 @@ void trackbar()
 		cout << "fail to read!" << endl;
 	}
 
+
 	//转化为灰度图
 	cvtColor(srcMat, gryMat, CV_BGR2GRAY);
 
