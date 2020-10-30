@@ -11,8 +11,8 @@ int main()
 	double start = static_cast<double>(cvGetTickCount());
 
 	//处理函数
-	Filter();
-	sobel_extracrtion();
+	//Filter();
+	//sobel_extracrtion();
 	Convolution_app();
 
 	//结束计时
