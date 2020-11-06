@@ -12,7 +12,7 @@ int main()
 	//处理函数
 	canny_extracrtion();
 	//warpaffine();
-	//imgcorrect();
+	imgcorrect();
 
 	//结束计时
 	double time = ((double)cvGetTickCount() - start) / cvGetTickFrequency();

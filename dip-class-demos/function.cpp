@@ -90,7 +90,6 @@ void canny_extracrtion()
 	**************************************************/
 	Canny(gry_Mat,canny_Mat2, 20, 60);
 
-
 	imshow("canny_Mat2", canny_Mat2);
 	imshow("canny_Mat1", canny_Mat1);
 
