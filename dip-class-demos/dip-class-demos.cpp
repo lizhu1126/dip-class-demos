@@ -11,9 +11,9 @@ int main()
 	double start = static_cast<double>(cvGetTickCount());
 
 	//处理函数
-	//spin_correct();
+	spin_correct();
 	// houghDemo();
-	houghsp_demo();
+	//houghsp_demo();
 
 	//结束计时
 	double time = ((double)cvGetTickCount() - start) / cvGetTickFrequency();

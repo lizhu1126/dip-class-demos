@@ -29,9 +29,9 @@ void spin_correct()
 	Rect bbox = RotatedRect(center, srcMat.size(), angle).boundingRect();
 
 
-	//调整仿射矩阵参数
-	rot.at < double >(0, 2) += bbox.width / 2.0 - center.x;
-	rot.at < double >(1, 2) += bbox.height / 2.0 - center.y;
+	////调整仿射矩阵参数
+	//rot.at < double >(0, 2) += bbox.width / 2.0 - center.x;
+	//rot.at < double >(1, 2) += bbox.height / 2.0 - center.y;
 
 
 	//定存放结果的图像容器
@@ -39,10 +39,9 @@ void spin_correct()
 
 	//利用仿射变换函数
 	cv::warpAffine(srcMat, dstMat, rot, bbox.size());
-
+	imshow("result", dstMat);
 	cv::waitKey(0);
 }
-
 
 /******************************************************************************************************************************
 												第7周练习2-3：霍夫变换的使用
