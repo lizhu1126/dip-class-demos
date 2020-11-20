@@ -16,8 +16,8 @@ int main()
 	//处理函数
 	//rimBlobAnalysis();
 
-	//chipBlobAnalysis();
-	libBlobAnalysis();
+	chipBlobAnalysis();
+	//libBlobAnalysis();
 
 	//结束计时
 	double time = ((double)cvGetTickCount() - start) / cvGetTickFrequency();
