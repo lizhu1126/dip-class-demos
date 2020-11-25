@@ -213,7 +213,6 @@ int detectPeople()
 
 	}
 
-
 	return 0;
 }
 
