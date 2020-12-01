@@ -206,7 +206,6 @@ int calcVisibalMag(cv::Mat srcMat, cv::Mat & dstMat)
 	/************************************************
 	log（） 函数模型：
 	log(InputArray src, OutputArray dst);
-
 	参数介绍：
 	. InputArray src：输入图像，可以是实数或虚数
 	. OutputArray dst：输出得到的对数值
