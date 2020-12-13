@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "funtions.h"
 
-#define TEST_RGB		1;		//0，使用灰度图进行演示	1.使用RGB图进行演示
+#define TEST_RGB		0;		//0，使用灰度图进行演示	1.使用RGB图进行演示
 #define GAMMA_FACTOR	0.5;	//gamma矫正的gamma值
 
 
@@ -88,7 +88,6 @@ int equalizeMain()
 		cout << "fail to read pic!" << endl;
 		return -1;
 	}
-
 	cv::Mat dstMat;
 	cv::Mat dstHistMat;
 	cv::Mat srcHistMat;
