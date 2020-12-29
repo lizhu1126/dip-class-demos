@@ -69,7 +69,7 @@ int kMeansDemo()
 
 		randShuffle(points, 1, &rng);
 
-		double compactness = kmeans(xxxx, xxxx, xxxx,
+		double compactness = kmeans(	,	,	,
 			TermCriteria(TermCriteria::EPS + TermCriteria::COUNT, 10, 1.0),
 			3, KMEANS_PP_CENTERS, centers);
 
@@ -110,6 +110,7 @@ int createMaskByKmeans(cv::Mat src, cv::Mat & mask)
 	int height = src.rows;
 
 	int pixNum = width * height;
+	int clusterCount;
 	Mat labels;
 	Mat centers;
 
