@@ -69,7 +69,7 @@ int kMeansDemo()
 
 		randShuffle(points, 1, &rng);
 
-		double compactness = kmeans(points, clusterCount, labels,
+		double compactness = kmeans(xxxx, xxxx, xxxx,
 			TermCriteria(TermCriteria::EPS + TermCriteria::COUNT, 10, 1.0),
 			3, KMEANS_PP_CENTERS, centers);
 
