@@ -110,7 +110,6 @@ int createMaskByKmeans(cv::Mat src, cv::Mat & mask)
 	int height = src.rows;
 
 	int pixNum = width * height;
-	int clusterCount = 2;
 	Mat labels;
 	Mat centers;
 

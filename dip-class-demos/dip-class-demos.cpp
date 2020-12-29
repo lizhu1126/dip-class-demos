@@ -13,7 +13,7 @@ int main()
 	//开始计时
 	double start = static_cast<double>(cvGetTickCount());
 
-	//segColor();
+	segColor();
 
 	kMeansDemo();
 
